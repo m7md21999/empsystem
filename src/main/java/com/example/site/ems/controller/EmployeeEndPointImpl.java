@@ -17,21 +17,21 @@ public class EmployeeEndPointImpl {
     private EmployeeService service;
 
 
-    @GetMapping("/{id}")
-    public String findById(@PathVariable int id , Model model){
-        if(service.findById(id)==null){
-            return"";
+ @GetMapping("/{id}")
+public String findById(@PathVariable int id , Model model){
+    if(service.findById(id)==null){
+        return"";
 
-        }else {
-            return service.findById(id).toString();
-        }
+    }else {
+        return service.findById(id).toString();
+    }
 
-    }
-    @GetMapping("/employee/list")
-    public List<Employee> findAll( Model model){
-        List<Employee> employeeList = service.findALl();
-        return employeeList;
-    }
+}
+@GetMapping("/employee/list")
+public List<Employee> findAll( Model model){
+     List<Employee> employeeList = service.findALl();
+    return employeeList;
+}
 
     @PostMapping("/create")
     public String create(Employee employee){
@@ -58,7 +58,6 @@ public class EmployeeEndPointImpl {
 
     public String update(Employee employee) {
         service.update(employee.getId(),
-                employee.getEmployeeId(),
                 employee.getFirstName(),
                 employee.getLastName(),
                 employee.getDepartment(),

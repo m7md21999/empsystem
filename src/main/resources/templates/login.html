@@ -8,17 +8,17 @@
 
 </head>
 <body>
-<table>
-    <tr>
-        <td>
-            <img th:src="@{/logo.png}" href="/logo.png" alt="our logo" >
-        </td>
-    </tr>
+    <table>
+        <tr>
+            <td>
+                <img th:src="@{/logo.png}" href="/logo.png" alt="our logo" >
+            </td>
+        </tr>
 
-    <tr>
-        <td>
-            <form action="/ems/goToList"
-            method="post">
+        <tr>
+            <td>
+                <form action="/ems/goToList"
+                      method="post">
 
                 <h1>Login Form</h1>
                 <div class="formcontainer">
@@ -38,12 +38,13 @@
                             <input type="checkbox"  checked="checked" name="remember"> Remember me
                         </label>
 
-            <span class="psw"><a href="#"> Forgot password?</a></span>
+                        <span class="psw"><a href="#"> Forgot password?</a></span>
                     </div>
-        </td>
-    </tr>
-    </form>
+                </div>
+                </form>
+            </td>
+        </tr>
 
-</table>
+    </table>
 </body>
 </html>

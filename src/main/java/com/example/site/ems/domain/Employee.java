@@ -11,20 +11,18 @@ import java.util.Date;
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer id ;
     @Column
-    private int employeeId;
     private String firstName;
     private String lastName;
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat( pattern = "yyyy-MM-dd")
     private Date date;
     private String email;
     private String department;
     private int salary;
 
-    public Employee(String firstName, int employeeId, String lastName, Date date, String email, String department, int salary) {
-        this.employeeId = employeeId;
+    public Employee(String firstName, String lastName, Date date, String email, String department, int salary) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.date = date;
@@ -40,7 +38,6 @@ public class Employee {
     public String toString() {
         return "Employee{" +
                 "id=" + id +
-                ", employeeId=" + employeeId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", date=" + date +
@@ -56,14 +53,6 @@ public class Employee {
 
     public Integer getId() {
         return id;
-    }
-
-    public int getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
     }
 
     public String getFirstName() {

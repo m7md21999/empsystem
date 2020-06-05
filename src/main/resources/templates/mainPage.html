@@ -7,12 +7,9 @@
 </head>
 <body>
 
-<img th:src="@{/logo.png}" href="/logo.png" alt="our logo" >
-
-<div class="main-block">
-    <h1>EMS - Main Page</h1>
-    <form action="/ems/add">
-
+    <div class="main-block">
+    <h1>Employee Management System</h1>
+        <form action="/ems/add">
         <table class="Table" style="width:100%">
             <thead>
             <tr>
@@ -31,9 +28,9 @@
             <tr th:each="employee: ${employeeList}">
                 <td>
                     <a th:href="@{'/ems/updateForm/{id}' (id=${employee.id})}"
-                       th:text="${employee.employeeId}">
+                       th:text="${employee.id}">
                     </a>
-                </td>
+                    </td>
                 <td th:text="${employee.firstName}">firstName</td>
                 <td th:text="${employee.lastName}">lastName</td>
                 <td th:text="${employee.email}">email</td>
@@ -48,9 +45,9 @@
             </tbody>
 
         </table>
-        <button class="button" type="submit">Add</button>
+            <button class="button" href="/ems/add" type="submit">Add</button>
 
-    </form>
+        </form>
 </div>
 </body>
 </html>

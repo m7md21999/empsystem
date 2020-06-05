@@ -11,10 +11,8 @@ import java.util.Optional;
 
 @Repository
 public class EmployeeDaoImpl implements EmployeeDao {
-
     @Autowired
-    EmployeeRepository repository;
-
+    private EmployeeRepository repository;
 
     @Override
     public Employee findById(int id) {
@@ -25,10 +23,13 @@ public class EmployeeDaoImpl implements EmployeeDao {
         } else {
             return null;
         }
+
+
     }
 
     @Override
     public List<Employee> findALl() {
+
         Iterable<Employee> employeeIterable = repository.findAll();
 
         List<Employee> employeeList = new ArrayList<>();
@@ -51,7 +52,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
     }
 
     @Override
-    public void update(int id, int employeeId, String fname, String lname, String department, String email, int salary, Date date) {
+    public void update(int id, String fname, String lname, String department, String email, int salary, Date date) {
 
 //        Optional<Employee> employee = repository.findById(id);
 //        if (employee.isPresent()){
@@ -66,7 +67,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
         if (repository.findById(id).isPresent()) {
             Employee emp = repository.findById(id).get();
-            emp.setEmployeeId(employeeId);
             emp.setFirstName(fname);
             emp.setLastName(lname);
             emp.setDepartment(department);
@@ -77,7 +77,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
         }
 
-    }
+
+
+    //FIXME: ADD IMPLEMENTATION
+//   throw new RuntimeException("Not implemented yet" );
+
+}
 
     @Override
     public void delete(int id) {

@@ -11,26 +11,36 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/ems")
-public class EmployeeControllerImpl implements EmployeeController {
+public class EmployeeControllerImpl {
 
     @Autowired
     EmployeeService employeeService;
 
+    @GetMapping("/{id}")
+
+    public String findById(@PathVariable int id,
+                           Model model) {
+        Employee employee = employeeService.findById(id);
+        model.addAttribute("employee", employee);
+        return "";
+    }
+
     @GetMapping("/employeesList")
-    @Override
+
     public String findALl(Model model) {
         List<Employee> employeeList = employeeService.findALl();
-        model.addAttribute("employeeList", employeeList);
+        model.addAttribute("employeeList",employeeList);
         return "mainPage";
     }
+
     @PostMapping("/create")
-    public String create(Employee employee) {
+    public String create(Employee employee){
         employeeService.add(employee);
         return "redirect:/ems/employeesList";
     }
 
     @GetMapping("/add")
-    @Override
+
     public String add(Model model) {
         Employee employee = new Employee();
         System.out.println("Employee: " + employee);
@@ -38,39 +48,17 @@ public class EmployeeControllerImpl implements EmployeeController {
         return "addPage";
     }
 
-    @GetMapping("/{id}")
-    @Override
-    public String findById(@PathVariable int id,
-                           Model model) {
-        Employee employee = employeeService.findById(id);
-        model.addAttribute("employee", employee);
-        // TODO: ADD THE HTML PAGE :
-        return "";
-    }
-
     @GetMapping("updateForm/{id}")
-    public String updateForm(@PathVariable int id, Model model) {
+    public String updateForm (@PathVariable int id, Model model){
         Employee employee = employeeService.findById(id);
-        model.addAttribute("employee", employee);
-        return "updatePage";
+        model.addAttribute("employee",employee);
+        return"updatePage";
     }
-
-    @GetMapping("/login")
-    public String login() {
-        return "login";
-    }
-
-    @PostMapping("/goToList")
-    public String goToList() {
-        return "redirect:/ems/employeesList";
-    }
-
     @PostMapping("/update")
-    @Override
+
     public String update(Employee employee) {
         System.out.println(employee);
         employeeService.update(employee.getId(),
-                employee.getEmployeeId(),
                 employee.getFirstName(),
                 employee.getLastName(),
                 employee.getDepartment(),
@@ -81,8 +69,8 @@ public class EmployeeControllerImpl implements EmployeeController {
     }
 
     @GetMapping("/delete/{id}")
-    @Override
-    public String delete(@PathVariable int id) {
+
+    public String delete( @PathVariable  int id) {
         employeeService.delete(id);
         return "redirect:/ems/employeesList";
     }
